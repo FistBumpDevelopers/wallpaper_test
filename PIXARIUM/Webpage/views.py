@@ -3,9 +3,9 @@ from .models import Wallpaper
 from taggit.models import Tag
 from django.shortcuts import render
 from django.db.models import Q
-from gensim import corpora, models, similarities
-import sqlite3
-
+import gensim
+import psycopg2
+from django.shortcuts import render
 # Create your views here.
 
 
@@ -96,46 +96,12 @@ def results(request):
             distinct_animes.append(item)
 
 
-    query = request.GET.get('searchterm', '')
+    search_term = request.GET.get('searchterm', '')
 
     titles = []
-    if query:
-        # Connect to SQLite database
-        conn = sqlite3.connect('db.sqlite3')
-        c = conn.cursor()
-        # Get all documents from the database
-        c.execute("SELECT id, combined_field FROM Webpage_wallpaper")
-        documents = c.fetchall()
-        
-        # Preprocess the documents
-        texts = [[word for word in document[1].lower().split()] for document in documents]
-        print(texts)
-        # Create a dictionary from the preprocessed documents
-        dictionary = corpora.Dictionary(texts)
-        print(dictionary)
-        # Create a corpus from the dictionary
-        corpus = [dictionary.doc2bow(text) for text in texts]
-        print(corpus)
-        # Build the LSA model
-        lsa = models.LsiModel(corpus, id2word=dictionary, num_topics=10)
 
-        # Transform the query into an LSA vector
-        vec_query = lsa[dictionary.doc2bow(query.lower().split())]
-
-         # Perform a similarity search using the LSA model
-        index = similarities.MatrixSimilarity(lsa[corpus])
-        sims = index[vec_query]
-        # Rank the results by similarity score
-        sims_sorted = sorted(enumerate(sims), key=lambda item: -item[1])
-        # Get the titles
-        for i in range(len(sims_sorted)):
-            if sims_sorted[i][1] > 0:
-                result = documents[sims_sorted[i][0]][0]
-                titles.append(result)
-        # Close the database connection
-        conn.close()
-
-    titles = Wallpaper.objects.all().filter(id__in = titles)
+    titles = Wallpaper.objects.all()
+      
 
     # filtering 
     count=[]
@@ -144,7 +110,7 @@ def results(request):
         count.append(1)
     wallpapers = titles.filter(Dimentions__in=categories)
 
-    return render(request,'results.html',{ 'tags':tags, 'games':distinct_games,'animes':distinct_animes,'titles':titles,'wallpapers':wallpapers,'count':count,"searchterm":query})
+    return render(request,'results.html',{ 'tags':tags, 'games':distinct_games,'animes':distinct_animes,'titles':titles,'wallpapers':wallpapers,'count':count,"searchterm":search_term})
 
 
 def download(request,id):
