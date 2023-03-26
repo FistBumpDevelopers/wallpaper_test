@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-1mihcp!l9-xf5z65elhrku7n)lo2t-x89smlz2o@w&=z*y2w##
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['wallpaper-test5.onrender.com']
 
 
 # Application definition
