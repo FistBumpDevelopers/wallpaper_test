@@ -1,0 +1,192 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/indexstyles.css' %}">
+    <!-- CSS only -->
+    <link rel="icon" href="{% static '/assets/images/favicon_pix.ico' %}">
+    
+    <title>PIXARIUM</title>
+</head>
+<body>
+
+    <!-- Start of Home page main screen -->
+    <div class="headerh" id="head-top"></div>
+    
+        <div class="bodybg"> 
+            <div id="headertexts">
+                <ul>
+                    <li><a title="Home" class="headlinetexts" href="/">PIXARIUM</a></li>
+                    <li><a title="Categories" class="headlinetexts" href="/wallpaper/all">CATEGORIES</a></li>
+                    <li><a title="Recents" class="headlinetexts" href="/#trend">#TRENDING</a></li>
+                </ul>
+            </div>
+            <form id="search" method="get" action="{% url 'results' %}">
+                
+                    <img src="{% static 'assets/images/search.svg' %}" class="search-ico">
+                    <button type="submit" id="search_button"></button>
+                <input type="text" class="search-bar" id="search-id" name="searchterm" placeholder="Rummage here..."
+                onfocus="this.placeholder=''" onblur="this.placeholder='Rummage here...'">
+                
+            </form>
+            <div id="Logo">
+                <!-- Start of Parallax -->
+                <section class="parallax">
+                    <h6 id="11"></h6>
+                <img id="layer-10" src="{% static 'assets/shuriken/10.png' %}"alt="">
+                <img id="layer-9" src="{% static 'assets/shuriken/9.png' %}"alt="">
+                <img id="layer-8" src="{% static 'assets/shuriken/8.png' %}"alt="">
+                <img id="layer-7" src="{% static 'assets/shuriken/7.png' %}"alt="">
+                <img id="layer-6" src="{% static 'assets/shuriken/6.png' %}"alt="">
+                <img id="layer-5" src="{% static 'assets/shuriken/5.png' %}"alt="">
+                <img id="layer-4" src="{% static 'assets/shuriken/4.png' %}"alt="">
+                <img id="layer-3" class="shuriken" src="{% static 'assets/shuriken/3new.png' %}"alt="">
+                <img id="layer-2" src="{% static 'assets/shuriken/2.png' %}"alt="">
+                <img id="layer-1" src="{% static 'assets/shuriken/1.png' %}"alt="">
+                </section>
+                <!-- End of Parallax -->
+            </div>
+            <p id="enter">ENTER <img src="{% static 'assets/images/enter.svg' %}" width="25" height="25"></p>
+            <div id="Search">
+                <a id="goto" href=#slide>PIXARIUM<div id="bg"></div></a>
+            </div>
+        </div>
+    </div>
+    <!-- End of Home page Main Scrn -->
+
+    <!-- Start of slider -->
+    <h2 id="slide">VARIETIES OF AWESOMENESS</h2>
+    <div class="hoverme">
+        <h4>HOVER ME</h4>
+        <img class="hover_Arrow" src="{% static 'assets/images/hover.svg' %}">
+    </div>
+        <div id="recents">
+            <a href="wallpaper/all">
+                <div class="gallery-container">
+                <video class="clip gallery-item slideitem1" src="{% static 'assets/videos/Title1.mp4' %}"  poster="{% static 'assets/images/thumb1.jpg' %}"loop muted></video>
+                <video class="clip gallery-item slideitem2" src="{% static 'assets/videos/Title2.mp4' %}"  poster="{% static 'assets/images/thumb2.jpg' %}"loop muted></video>
+                <video class="clip gallery-item slideitem3" src="{% static 'assets/videos/titile 5.mp4' %}" poster="{% static 'assets/images/thumb3.jpg' %}" loop muted></video>
+                <video class="clip gallery-item slideitem4" src="{% static 'assets/videos/Title3.mp4' %}"  poster="{% static 'assets/images/thumb4.jpg' %}"loop muted></video>
+                <video class="clip gallery-item slideitem5" src="{% static 'assets/videos/Title5.mp4' %}"  poster="{% static 'assets/images/thumb5.jpg' %}"loop muted></video>
+                
+            </div>
+        </a>
+        </div>
+        <div class="viewdiv">
+        <p class="view">Anime, Games, Manga, Movies, Series, it's a Fantasy World we live in right. Well then, here we bring you the multiverse of that <span>'Fantasy World'</span>.
+            <br>(Click on any of the cards above to view more...)</p>
+        </div>
+    <!--End of slider-->
+
+    <!--start of sizes-->
+   
+       <div class="size-display">
+        <a class="img-div" href="/wallpaper/all/?check-box=Desktop">
+        
+            <img class="square dis-img" src="{% static 'assets/videos/169.gif' %}" alt="">
+
+        </a><a class="img-div" href="/wallpaper/all/?check-box=Square">
+        
+            <img class="square dis-img" src="{% static 'assets/videos/11.gif' %}" alt="">
+
+        </a><a class="img-div" href="/wallpaper/all/?check-box=Mobile">
+       
+            <img class="square dis-img" src="{% static 'assets/videos/916.gif' %}" alt="">
+
+        </a>
+    </div>
+    </a>
+    <div class="viewdiv">
+        <p class="view">What size you want? You name it, we'll give it!.
+            <br>(Click on any of the sizes above to view more...)</p>
+        </div>
+    <!--end of sizes-->
+
+    <!--sample car-->
+    <h2 id="trend">#TRENDING</h2>
+    <div class="container">
+        <ul id="c"> 
+            <div id="layer1">
+             
+	<div class="list1 ani"><a href="/download/{{trend.0.id}}"><img class="rec-img" src="{{trend.0.Image.url}}"></a></div>
+       <div class="list2 ani"> <a href="/download/{{trend.1.id}}"><img class="rec-img" src="{{trend.1.Image.url}}"></a></div>
+       <div class="list3 ani"> <a href="/download/{{trend.2.id}}"><img class="rec-img" src="{{trend.2.Image.url}}"></a></div>
+       <div class="list4 ani"> <a href="/download/{{trend.3.id}}"><img class="rec-img" src="{{trend.3.Image.url}}"></a></div>
+</div>
+
+<div id="layer2">
+   <div class="list5 ani"> <a href="/download/{{trend.4.id}}"><img class="rec-img" src="{{trend.4.Image.url}}"></a></div>
+   <div class="list6 ani"> <a href="/download/{{trend.5.id}}"><img class="rec-img" src="{{trend.5.Image.url}}"></a></div>
+   <div class="list7 ani"> <a href="/download/{{trend.6.id}}"><img class="rec-img" src="{{trend.6.Image.url}}"></a></div>
+   <div class="list8 ani"> <a href="/download/{{trend.7.id}}"><img class="rec-img" src="{{trend.7.Image.url}}"></a></div>
+    </div>
+
+    <div id="layer3">
+       <div class="list9 ani"> <a href="/download/{{trend.8.id}}"><img class="rec-img" src="{{trend.8.Image.url}}"></a></div>
+       <div class="list10 ani"> <a href="/download/{{trend.9.id}}"><img class="rec-img" src="{{trend.9.Image.url}}"></a></div>
+        <div class="list11 ani"><a href="/download/{{trend.10.id}}"><img class="rec-img" src="{{trend.10.Image.url}}"></a></div>
+        <div class="list12 ani"><a href="/download/{{trend.11.id}}"><img class="rec-img" src="{{trend.11.Image.url}}"></a></div>
+        </ul>
+    </div>    
+    <!--sample car end-->
+
+    <!--popular start-->
+    <div class="popular">
+        <h2>POPULAR PICKS</h2>
+        <div class="tags">
+            {% for tag in tags %}
+        <a href="wallpaper/{{tag}}">#{{tag}}</a>
+        {% endfor %}
+    </div>
+    </div>
+    <!--popular end-->
+
+    <div class="space">
+    </div>
+    <!--devs-->
+    <h6 class="FBD">
+        <img class="arrow-devs" src="{% static 'assets/images/double_arrow_right_icon.svg' %}" alt="">
+        @FIST BUMP DEVELOPERS
+    <img class="arrow-devs" src="{% static 'assets/images/double_arrow_left_icon.svg' %}" alt=""></h6>
+    <div class="devs">
+        <img class="linkedin-devs Y" title="Yazhini Malar" src="{% static 'assets/images/horisan.png' %}" alt="Yazhini Malar">
+        <div class="dev_name">
+        <a target="_blank" href="https://www.linkedin.com/in/yazhini-malar/">
+            <p class="Yp">Pa. Yazhini Malar<img src="{% static 'assets/images/link send.svg' %}" width="40" height="40"></p>
+        </a>
+        <p id="content">Friends turned developers. We seek, explore and wander for amazement. So is our first step, PIXARIUM!</p>
+        <a target="_blank" href="https://instagram.com/sageart.amv?igshid=YmMyMTA2M2Y=">
+            <p class="Kp">C. Kausik Rajan<img src="{% static 'assets/images/link send.svg' %}" width="40" height="40"></p>
+        </a>
+        </div>
+        <img class="linkedin-devs K" title="Kausik Rajan" src="{% static 'assets/images/Miyamura.png' %}" alt="Kausik Rajan">
+    </div>
+<a href="#head-top"><img src="{% static 'assets/images/arrow_up.svg' %}" class="go-top"></a>
+<img id="cursor" src="{% static 'assets/images/rinnegan.png' %}" alt="Image" width="50" height="50">
+<footer>
+    <nav class="bottom">
+      <ul>
+        <li>
+          <a href="https://sites.google.com/view/fbdprivacypolicy" target="_blank">Privacy Policy</a>
+          <a href="https://sites.google.com/view/fbdtos" target="_blank">Terms of Service</a>
+          <a href="mailto:fistbumpdevelopers@gmail.com" target="_blank"
+            ><img
+              class="bottom_icons"
+              title="Mail Us"
+              src="{% static 'assets/images/gmail_w.svg' %}"
+              width="20px"
+              height="20px"
+          /></a>
+        </li>
+      </ul>
+    </nav>
+  </footer>
+        <script type="text/javascript" src="{% static 'JS/indexscript.js' %}"></script>
+</body>
+</html>

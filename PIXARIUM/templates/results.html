@@ -1,0 +1,181 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/wallpaperstyle.css' %}" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <title>PIXARIUM</title>
+    <link rel="icon" href="{% static '/assets/images/favicon_pix.ico' %}">
+  </head>
+  <body>
+    <header>
+      <div class="header_nav">
+        <nav class="header">
+          <ul>
+            <li class="nav_link">
+              <a title="Home" class="link_text" href="index.html">PIXARIUM</a>
+            </li>
+            <li class="nav_link">
+              <a title="Categories" class="link_text" href="wallpaper.html">CATEGORIES</a>
+            </li>
+            <li class="nav_link">
+              <a title="Recents" class="link_text" href="./index.html#trend">#TRENDING</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <section id="side_scroll">
+      <div class="sidebar">
+        <h3>CATEGORIES</h3>
+        <h4>ANIME</h4>
+        <ul class="sidebar_list">
+          {% for anime in animes %}
+          <li><a class="list" href="/wallpaper/{{anime}}" >{{anime}}</a></li>
+          {% endfor %}
+        </ul>
+        <br />
+        <h4>GAMES</h4>
+        <ul class="sidebar_list">
+          {% for game in games %}
+          <li><a class="list" href="/wallpaper/{{game}}">{{game}}</a></li>
+          {% endfor %}
+        </ul>
+        <br />
+        <h4>GENRE</h4>
+        <ul class="sidebar_list">
+          {% for tag in tags %}
+          <li><a class="list" href="/wallpaper/{{tag.name}}">{{tag.name}}</a></li>
+          {% endfor %}
+        </ul>
+        <br />
+        <h4>SIZES</h4>
+        <ul class="sidebar_list">
+          <li><a class="list" href="/wallpaper/all/?check-box=Desktop">Desktop</a></li>
+          <li><a class="list" href="/wallpaper/all/?check-box=Mobile">Mobile</a></li>
+          <li><a class="list" herf="/wallpaper/all/?check-box=Square">Square</a></li>
+        </ul>
+      </div>
+    </section>
+    <h3 class="cat-name">Search results for - {{searchterm}}</h3>
+      <div class="wrapper">
+        <form method="get" action="">
+        <ul>
+          <li>
+            <input type="checkbox" class="check" name="check-box" value="Desktop" id="Checkbox1"/>
+            <label for="Checkbox1" class="check-text">
+              <div class="custom-checkbox"></div>
+              Desktop
+            </label>
+        </li>
+        <li>
+          <input type="checkbox" class="check" name="check-box" value="Mobile" id="Checkbox2"/>
+          <label for="Checkbox2" class="check-text">
+            <div class="custom-checkbox"></div>
+            Mobile
+          </label>
+
+        </li>
+        <li>
+          <input type="checkbox" class="check" name="check-box" value="Square"  id="Checkbox3"/>
+          <label for="Checkbox3" class="check-text">
+            <div class="custom-checkbox"></div>
+            Square
+          </label>
+
+        </li>
+        <li>
+          <input type="checkbox" class="check check_all" name="check-box" value="Square"  id="Checkbox4"/>
+          <label for="Checkbox4" class="check-text">
+            <div class="custom-checkbox"></div>
+            All
+          </label>
+
+        </li>
+            <li>
+              <button class="filter" type="submit">Filter<img src="{% static 'assets/images/filter.svg' %}"></button>
+            </li></form>
+        </ul>
+    </div>
+
+    <div class="wallpapers_grid">
+      <div class="grid-container">
+        
+        {% if count %}
+              {% if wallpapers %}
+              {% for title in wallpapers %}
+              <a href="/download/{{title.id}}">
+              <div class="grid-item">
+                  <img class="images_wallpapers" src="{{title.thumbnail.url}}">
+              <div class="dim">
+              </div>
+                  <div class="overlay">
+                <div class="text">Title:{{a}}{{title.Title}}<br>Name: {{title.Sauce}}</div>
+          </div>
+              </div>
+            </a>
+              {% endfor %}
+              {% else %}
+              <div class="oops"><h5><span class="oops_large">Oops! :)</span><br>Looks like we've hit the end... Gomenasai!<br>Please try again!</h5></div>
+              {% endif %}
+        {% else %}
+              {% if titles %}
+              {% for title in titles %}
+              <a href="/download/{{title.id}}">
+              <div class="grid-item">
+                  <img class="images_wallpapers" src="{{title.thumbnail.url}}">
+              <div class="dim">
+              </div>
+                  <div class="overlay">
+                <div class="text">Title: {{title.Title}}<br>Name: {{title.Sauce}}</div>
+            </div>
+              </div>
+            </a>
+              
+              {% endfor %}
+              {% else %}
+              <div class="oops"><h5><span class="oops_large">Oops! :)</span><br>Looks like we've hit the end... Gomenasai!<br>Please try with different keywords!</h5></div>
+              {% endif %}
+        {% endif %}
+
+      </div>
+    </div>
+    <div class="space">
+    </div>
+    <footer>
+      <nav class="bottom">
+        <ul>
+          <li>
+            <a href="https://sites.google.com/view/fbdprivacypolicy" target="_blank">Privacy Policy</a>
+            <a href="https://sites.google.com/view/fbdtos" target="_blank">Terms of Service</a>
+            <a href="mailto:fistbumpdevelopers@gmail.com" target="_blank"
+              ><img
+                class="bottom_icons"
+                title="Mail Us"
+                src="{% static 'assets/images/gmail.svg' %}"
+                width="20px"
+                height="20px"
+            /></a>
+          </li>
+        </ul>
+      </nav>
+    </footer>
+    <script>
+      const toggleCheckbox = document.querySelector('#Checkbox4');
+      const toggleableCheckboxes = document.querySelectorAll('.check');
+  
+      toggleCheckbox.addEventListener('change', function() {
+      for (let i = 0; i < toggleableCheckboxes.length; i++) {
+      toggleableCheckboxes[i].checked = this.checked;
+      }
+      });
+      </script>
+  </body>
+</html>

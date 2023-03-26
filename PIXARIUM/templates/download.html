@@ -1,0 +1,126 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="{% static 'css/downloadstyle.css' %}" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <title>PIXARIUM</title>
+    <link rel="icon" href="{% static '/assets/images/favicon_pix.ico' %}">
+  </head>
+  <body>
+    <header>
+      <div class="header_nav">
+        <nav class="header">
+          <ul>
+            <li class="nav_link">
+              <a class="link_text" href="/">PIXARIUM</a>
+            </li>
+            <li class="nav_link">
+              <a class="link_text" href="/wallpaper/all">CATEGORIES</a>
+            </li>
+            <li class="nav_link">
+              <a class="link_text" href="/#trend">#TRENDING</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <section id="side_scroll">
+      <div class="sidebar">
+        <h3>CATEGORIES</h3>
+        <h4>ANIME</h4>
+        <ul class="sidebar_list">
+          {% for anime in animes %}
+          <li><a class="list" href="/wallpaper/{{anime}}" >{{anime}}</a></li>
+          {% endfor %}
+        </ul>
+        <br />
+        <h4>GAMES</h4>
+        <ul class="sidebar_list">
+          {% for game in games %}
+          <li><a class="list" href="/wallpaper/{{game}}">{{game}}</a></li>
+          {% endfor %}
+        </ul>
+        <br />
+        <h4>GENRE</h4>
+        <ul class="sidebar_list">
+          {% for tag in tags %}
+          <li><a class="list" href="/wallpaper/{{tag.name}}">{{tag.name}}</a></li>
+          {% endfor %}
+        </ul>
+        <br />
+        <h4>SIZES</h4>
+        <ul class="sidebar_list">
+          <li><a class="list" href="/wallpaper/all/?check-box=Desktop">Desktop</a></li>
+          <li><a class="list" href="/wallpaper/all/?check-box=Mobile">Mobile</a></li>
+          <li><a class="list" href="/wallpaper/all/?check-box=Square">Square</a></li>
+        </ul>
+      </div>
+    </section>
+    <section>
+      <div class="display">
+        <div class="wallpaper">
+          <img src="{{image.Image.url}}" class="download_wallpaper_display_img">
+        </div>
+        <div class="low">
+          <a href="./assets/images/HORIMIYA.png" download="Wallpaper">
+            <div class="dwn-button">
+              <a href="{{image.Image.url}}" download><button class="download">DOWNLOAD<br>2K</button></a>
+              <a href="{{image.Image_1080.url}}" download><button class="download">DOWNLOAD 1080p</button></a>
+              <a href="{{image.Image_720.url}}" download><button class="download">DOWNLOAD 720p</button></a>
+          </div>
+          </a>
+          <p class="text">{{image.Title}}</p>
+          <br />
+          <p class="text">{{image.Sauce}}</p>
+          <br />
+          <p class="text">Some text about the wallpaper</p>
+          <br />
+        </div>
+      </div>
+    </section>
+    <div class="decor">
+        <div class="decor1">
+        </div>
+        <div class="decor2">
+        </div>
+        <div class="decor3">
+        </div>
+        <div class="decor4">
+        </div>
+        <div class="decor5">
+        </div>
+        <div class="decor6">
+        </div>
+        <div class="decor7">
+        </div>
+        <div class="decor8">
+        </div>
+        <div class="space">
+        </div>
+    </div>
+    <footer>
+      <nav class="bottom">
+        <ul>
+          <li>
+            <a href="https://sites.google.com/view/fbdprivacypolicy" target="_blank">Privacy Policy</a>
+            <a href="https://sites.google.com/view/fbdtos" target="_blank">Terms of Service</a>
+            <a href="mailto:fistbumpdevelopers@gmail.com" target="_blank"
+              ><img
+                class="bottom_icons"
+                title="Mail Us"
+                src="{% static 'assets/images/gmail.svg' %}"
+                width="20px"
+                height="20px"
+            /></a>
+          </li>
+        </ul>
+      </nav>
+    </footer>
+    <!-- <script type="text/javascript" src="./JS/downloadscript.js"></script> -->
+  </body>
+</html>
