@@ -46,7 +46,9 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -100,7 +102,7 @@ WSGI_APPLICATION = 'PIXARIUM.wsgi.application'
 # Update database configuration with $DATABASE_URL.
 
 DATABASES = {
-    "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
+    "default": dj_database_url.parse(os.environ.get('DATABASE_URL')),
 }
 
 # ...
@@ -146,6 +148,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
