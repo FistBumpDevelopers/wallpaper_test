@@ -14,6 +14,7 @@ from pathlib import Path
 import dj_database_url
 import os
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -89,42 +90,18 @@ WSGI_APPLICATION = 'PIXARIUM.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    
-}
 
-import dj_database_url
-import os
 
 # ...
 
-db_from_env = dj_database_url.config(conn_max_age=600)
-if db_from_env:
-    DATABASES['default'].update(db_from_env)
-else:
-    DATABASES['default'] = {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.path.basename(BASE_DIR),
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
 
 # ...
 
 # Update database configuration with $DATABASE_URL.
-db_url = os.environ.get('DATABASE_URL')
-if db_url:
-    parsed_url = dj_database_url.parse(db_url.encode('utf-8'))
-    DATABASES['default'] = {
-        'ENGINE': parsed_url['engine'],
-        'NAME': parsed_url['name'],
-        'USER': parsed_url['user'],
-        'PASSWORD': parsed_url['password'],
-        'HOST': parsed_url['host'],
-        'PORT': parsed_url['port'],
-    }
+
+DATABASES = {
+    "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
+}
 
 # ...
 
